@@ -1,0 +1,27 @@
+# SLURM configuration for the simple Snakemake demo.
+# Edit the values below to match your cluster. When you run with
+#   snakemake --executor slurm -j 4
+# the Snakefile loads default_resources from this file (no overrides in the Snakefile).
+
+# Shared account/partition (YAML anchor; merged into default_resources and job profiles).
+_shared: &shared
+  slurm_account: "open"
+  slurm_partition: "open"
+
+# Default resources: full block used by the Snakefile as-is.
+default_resources:
+  <<: *shared
+  mem_mb: 512
+  runtime: 5
+
+# Named job-size configs (same attributes; for --set-resources or custom logic).
+small_jobs:
+  <<: *shared
+  mem_mb: 256
+  runtime: 5
+
+big_jobs:
+  <<: *shared
+  mem_mb: 2048
+  runtime: 30
+
