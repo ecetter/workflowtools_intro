@@ -2,3 +2,5 @@ logs/*
 !logs/readme.md
 results/*
 !results/readme.md
+benchmarks/*
+!benchmarks/readme.md

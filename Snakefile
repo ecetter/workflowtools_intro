@@ -34,6 +34,8 @@ rule transform:
         "results/transformed.csv"
     resources:
         runtime=15
+    benchmark:
+        "benchmarks/transform.txt"
     log:
         "logs/transform.log"
     shell:
