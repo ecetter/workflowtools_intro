@@ -1,2 +1,4 @@
 logs/*
-!logs/.gitkeep
+!logs/readme.md
+results/*
+!results/readme.md
