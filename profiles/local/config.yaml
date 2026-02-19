@@ -8,7 +8,7 @@ latency-wait: 60                       # to allow some filesystem delay
 default-resources:                     # setting default resources to be used for submitted local jobs
   mem_mb: 250                          # small amount of RAM is needed
   disk_mb: 250                         # small amount of disk is needed
-  runtime: 10                          # [ minutes ] set max job runtime
+  runtime: '10m'                       # set max job runtime
   cpus_per_task: 1                     # only needs a single cpu at a time
 
 # Remember, these are all just defaults, so any of these can be overwritten directly within the Snakemake file rules or via CLI arguments.
