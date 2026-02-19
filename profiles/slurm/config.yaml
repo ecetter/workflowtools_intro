@@ -1,13 +1,17 @@
-executor: slurm
-jobs: 10
-latency-wait: 30
+# 
+# This profile sets persistent values for slurm jobs spawned by your workflow
+# 
 
-default-resources:
-  slurm_partition: "basic"
-  slurm_account: "rise_cr_internal"
-  mem_mb: 512
-  disk_mb: 512
-  runtime: 10
-  cpus_per_task: 1
+executor: slurm                        # using the slurm executor plugin
+jobs: 10                               # setting a max number of jobs
+latency-wait: 60                       # to allow some filesystem delay
 
-# end of file
+default-resources:                     # setting default resources to be used for submitted slurm jobs
+  slurm_partition: "basic"             # setting the basic partition since it is "cheapest"
+  #slurm_account: "some_acct_name"     # placeholder to specify a slurm compute account, open is used by default if unset
+  mem_mb: 250                          # small amount of RAM is needed
+  disk_mb: 250                         # small amount of disk is needed
+  runtime: 10                          # [ minutes ] set max job runtime
+  cpus_per_task: 1                     # only needs a single cpu at a time
+
+# Remember, these are all just defaults, so any of these can be overwritten directly within the Snakemake file rules or via CLI arguments.
