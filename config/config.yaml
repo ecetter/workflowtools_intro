@@ -1,0 +1,6 @@
+
+jobs: 10
+default-resources: 
+  mem_mb: 512,
+  disk_mb: 512,
+  cpus: 1

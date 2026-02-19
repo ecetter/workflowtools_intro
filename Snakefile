@@ -1,19 +1,11 @@
 # Simple Snakemake demo: CSV -> multiple processing stages -> plot.
-# Run from this directory:
-#   Local:  snakemake -j1
-#   SLURM:  edit config/slurm.yaml (account, partition), then:
-#           snakemake --executor slurm -j 4
-#           (account and partition are read from config/slurm.yaml below)
 
-configfile: "config/slurm.yaml"
-
-# SLURM executor: default_resources are read from config/slurm.yaml only.
-default_resources: config.get("default_resources", {})
 
 rule all:
     input:
         "results/plot.png",
         "results/summary.txt"
+
 
 # Stage 1: validate and clean input CSV (drop empty rows, ensure numeric value)
 rule clean:
@@ -21,6 +13,8 @@ rule clean:
         "data/input.csv"
     output:
         "data/cleaned.csv"
+    resources:
+        runtime=10
     log:
         "logs/clean.log"
     shell:
@@ -32,6 +26,8 @@ rule transform:
         "data/cleaned.csv"
     output:
         "results/transformed.csv"
+    resources:
+        runtime=10
     log:
         "logs/transform.log"
     shell:
@@ -43,6 +39,8 @@ rule summarize:
         "results/transformed.csv"
     output:
         "results/summary.txt"
+    resources:
+        runtime=10
     log:
         "logs/summary.log"
     shell:
@@ -54,8 +52,9 @@ rule plot:
         "results/transformed.csv"
     output:
         "results/plot.png"
+    resources:
+        runtime=10
     log:
         "logs/plot.log"
     shell:
         "python scripts/plot.py {input[0]} {output[0]} 2> {log}"
-
