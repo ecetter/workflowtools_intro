@@ -13,7 +13,7 @@ A minimal pipeline: one input CSV, several processing steps, and a plot.
 1. **clean** (`scripts/clean.py`) :  Read `data/input.csv`, drop any nulls, and ensure `value` entries are numeric. Produces `data/cleaned.csv` as the clean dataset.
 2. **transform** (`scripts/transform.py`) : Add column to insert normalized value and another column to add the rank. Produces `results/transformed.csv` as the result.
 3. **summarize** (`scripts/summarize.py`) : Write summary stats to `results/summary.txt` file.
-4. **plot** (`scripts/plot.py`) : Create bar chart of category vs value and place in `results/plot.png` image file.
+4. **plot** (`scripts/plot.py`) : Create bar chart of category vs value as `results/plot.png` and `results/plot_unsorted.png` image files.
 
 Each step is implemented in a Python script under `scripts/`; the Snakefile invokes them with input and output paths taken as input arguments.
 
@@ -44,10 +44,6 @@ snakemake --profile profiles/local
 
 ```bash
 snakemake --profile profiles/slurm
-```
-or
-```bash
-snakemake --profile profiles/slurm --verbose
 ```
 
 

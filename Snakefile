@@ -62,9 +62,10 @@ rule plot:
     input:
         "results/transformed.csv"
     output:
-        "results/plot.png"
+        "results/plot.png",
+        "results/plot_unsorted.png"
     log:
         "logs/plot.log"
     shell:
-        "python scripts/plot.py {input[0]} {output[0]} 2> {log}"
+        "python scripts/plot.py {input[0]} {output[0]} {output[1]} 2> {log}"
 
